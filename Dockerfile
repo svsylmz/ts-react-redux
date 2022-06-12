@@ -1,0 +1,16 @@
+FROM node:lts
+
+ENV PORT 3000
+
+RUN mkdir -p ${PROJECT_DIRECTORY}/${PROJECT_NAME}
+WORKDIR ${PROJECT_DIRECTORY}/${PROJECT_NAME}
+
+COPY package*.json ${PROJECT_DIRECTORY}/${PROJECT_NAME}/
+RUN npm install
+
+COPY . ${PROJECT_DIRECTORY}/${PROJECT_NAME}
+
+RUN npm run build
+EXPOSE 3000
+
+CMD "npm" "run" "dev"

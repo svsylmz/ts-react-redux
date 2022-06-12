@@ -1,0 +1,13 @@
+version: "2"
+services:
+  nextjs:
+    ports:
+      - 3000:3000
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./packages/landingpage:${PROJECT_DIRECTORY}/${PROJECT_NAME}
+      - ${PROJECT_DIRECTORY}/${PROJECT_NAME}/node_modules
+      - ${PROJECT_DIRECTORY}/${PROJECT_NAME}/.next
+    env_file:
+      - .env
